@@ -1,5 +1,64 @@
-<html>
-<body>
-XDE-ISIR
-</body>
-</html>
+<h1>In order to have XDE:</h1>
+
+<p><a href="script/install_xde_dep.sh">install script</a></p>
+
+<pre><code>1. Install xde-dependancies with the install script: `sudo bash install_xde_dep.sh`
+
+2. extract compressed file in XDE-xxx/ and place it in your $XDE_DIR
+</code></pre>
+
+<h1>For the development with XDE:</h1>
+
+<pre><code>3.  Install package "xdecore_3.99.5.0_amd64.deb"
+
+4.  Copy the eigen3.pc in /usr/share/pkgconfig, or modify the eigen3.pc
+    in this directory by replacing the last line
+        * "Cflags: -I/usr/include/eigen3"
+    by
+        * "Cflags: -I/usr/include/eigen3 -I/usr/include/eigen3/unsupported"
+    ( in order to find lgsm)
+
+5.  Install package by forcing the procedure :
+    "sudo dpkg -i --force-all  xdecore-dev_3.99.5.0_amd64.deb"
+
+6.  Copy "xdecore.pc" in the pkgconfig path, (yours, or by default in /usr/share/pkgconfig)
+    (to check if all is good, you can type "pkg-config --print-errors xdecore"; ok if nothing returns)
+</code></pre>
+
+<h1>Install orc_framework:</h1>
+
+<pre><code>7.  Obtain the orc_framework (ask joseph or sovan), and build with cmake.
+    I recommend to create a build directory to make the application; in the root directory type:
+
+        mkdir _build
+        cd _build
+        cmake -DCMAKE_INSTALL_PREFIX=/home/user/folder/ ..
+        make -s
+        make -s install
+
+    Here make does nothing (it compiles nothing), it is not a problem.
+
+    You have now the orc_framework, and can create your own applications.
+</code></pre>
+
+<h1>Install XDE-ISIR applications:</h1>
+
+<pre><code>8.  Be sure to have git (install it with "sudo apt-get install git")
+
+9.  Get QuadProg++ slightly modified, the quadratic solver from (http://quadprog.sourceforge.net/)
+    git clone https://github.com/XDE-ISIR/quadprog.git
+
+    Build and install with cmake as presented above.
+
+10. Get orcisir_ModelFromXDE:
+    git clone https://github.com/XDE-ISIR/orcisir_ModelFromXDE.git
+
+11. Get orcisir_IsirController :
+    git clone https://github.com/XDE-ISIR/orcisir_IsirController.git
+
+12. Finally, you can get a demo of all this stuff:
+    git clone https://github.com/XDE-ISIR/demo-spacemouse.git
+</code></pre>
+
+<p>That's all folk's. For any problems:
+    <email>: salini[at]isir.upmc.fr</p>
