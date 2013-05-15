@@ -1,0 +1,676 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>xde_world_manager &mdash; WorldManager v0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="WorldManager v0 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">WorldManager v0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="xde-world-manager">
+<h1>xde_world_manager<a class="headerlink" href="#xde-world-manager" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-src.core"></span><dl class="class">
+<dt id="src.core.WorldManager">
+<em class="property">class </em><tt class="descname">WorldManager</tt><big>(</big><em>corba=False</em><big>)</big><a class="headerlink" href="#src.core.WorldManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Middle layer to manage the different XDE agents.</p>
+<p>It always creates a clock agent (clock) and a physic agent (phy).
+This give access to the main physical scene (ms), the geometrical scene (xcd)
+and a sync connector (icsync) to synchronize physic with asynchronous events.</p>
+<p>Besides, one can create a graphic agent (graph) which gives access to the
+graphical scene (graph_scn).</p>
+<dl class="method">
+<dt id="src.core.WorldManager.addFreeMarkers">
+<tt class="descname">addFreeMarkers</tt><big>(</big><em>world</em>, <em>marker_name_list</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.addFreeMarkers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add free markers into a world, whose positions are not related to bodies.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>world</strong> &#8211; a scene_pb2.World where the marker will be added</li>
+<li><strong>marker_name_list</strong> &#8211; a string or a list corresponding to the name(s) of the new marker(s)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In order to update its position, write [(Hxdes, marker_name)] in a output port (name, &#8220;vector_pair_Displacementd_string&#8221;)
+connected to graph.getPort(&#8220;framePosition&#8221;)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.addInteraction">
+<tt class="descname">addInteraction</tt><big>(</big><em>pairs_of_contact</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.addInteraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the visualization of interactions between pairs of bodies.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pairs_of_contact</strong> &#8211; a list of bodies name pairs.</td>
+</tr>
+</tbody>
+</table>
+<p>For instance, if we want to see the interactions between &#8220;b1&#8221;/&#8221;b2&#8221; &amp;
+between &#8220;b1&#8221;/&#8221;b3&#8221;, the argument will be on the form:
+addInteraction( [(&#8220;b1&#8221;, &#8220;b2&#8221;), (&#8220;b1&#8221;, &#8220;b3&#8221;)] )</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.addMarkerToSimulation">
+<tt class="descname">addMarkerToSimulation</tt><big>(</big><em>name</em>, <em>thin_markers=True</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.addMarkerToSimulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Directly add a marker into the graphical scene.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; the name of the new marker</li>
+<li><strong>thin_markers</strong> &#8211; if True, displayed markers are three lines, else they are three big arrows</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.addMarkers">
+<tt class="descname">addMarkers</tt><big>(</big><em>world</em>, <em>bodies_to_display=None</em>, <em>thin_markers=True</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.addMarkers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a visual frame to each body of bodies_to_display list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>world</strong> &#8211; a scene_pb2.World where are added the new markers</li>
+<li><strong>bodies_to_display</strong> &#8211; a list of body name one wants to display</li>
+<li><strong>thin_markers</strong> &#8211; if True, displayed markers are three lines, else they are three big arrows</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>If the list is empty, a visual frame is added for every body in world.
+This must be call before the addWorld method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.addWorld">
+<tt class="descname">addWorld</tt><big>(</big><em>new_world</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.addWorld" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize a new World into the graphical &amp; physical components.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_world</strong> &#8211; a scene_pb2.World which will be deserialized</td>
+</tr>
+</tbody>
+</table>
+<p>For more information, see methods:
+* addWorldToPhysic
+* addWorldToGraphic</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.addWorldToGraphic">
+<tt class="descname">addWorldToGraphic</tt><big>(</big><em>new_world</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.addWorldToGraphic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize a new World into the graphical components.</p>
+<p>It fills the graph and graph_scn elements of the WorldManager instance.
+Note that if create_graphic has been set to False, nothing will be done.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_world</strong> &#8211; a scene_pb2.World which will be deserialized</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.addWorldToPhysic">
+<tt class="descname">addWorldToPhysic</tt><big>(</big><em>new_world</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.addWorldToPhysic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize a new World into the physical components.</p>
+<p>It fills the phy, ms and xcd elements of the WorldManager instance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_world</strong> &#8211; a scene_pb2.World which will be deserialized</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.attachViewPortToNewNode">
+<tt class="descname">attachViewPortToNewNode</tt><big>(</big><em>viewportName</em>, <em>parentNodeName</em>, <em>H</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.attachViewPortToNewNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attach the viewport camera to a node deported from a graphical node.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>viewportName</strong> &#8211; the name of the viewport one wants to attach</li>
+<li><strong>parentNodeName</strong> &#8211; the graphical node which will be rigidly linked with the new graphical node</li>
+<li><strong>H</strong> &#8211; the lgsm.Displacement from the parentNode to the new graph node which will support the viewport camera</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.attachViewPortToNode">
+<tt class="descname">attachViewPortToNode</tt><big>(</big><em>viewportName</em>, <em>nodeName</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.attachViewPortToNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attach the viewport camera to a graphical node.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>viewportName</strong> &#8211; the name of the viewport one wants to attach</li>
+<li><strong>nodeName</strong> &#8211; the graphical node which will support the viewport camera</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The camera will follow the node motion. Very useful, e.g. to simulate the visual data returned
+by a camera linked to the end effector of the robot.</p>
+<p>TODO: tells about the camera axis???</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.changePhy">
+<tt class="descname">changePhy</tt><big>(</big><em>phy_name</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.changePhy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Problem or depracated, no doc done.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.cleanGraph">
+<tt class="descname">cleanGraph</tt><big>(</big><big>)</big><a class="headerlink" href="#src.core.WorldManager.cleanGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean all components in the graphical scene.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.cleanPhy">
+<tt class="descname">cleanPhy</tt><big>(</big><big>)</big><a class="headerlink" href="#src.core.WorldManager.cleanPhy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean all components in the physical scene.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.connectClockToPhysic">
+<tt class="descname">connectClockToPhysic</tt><big>(</big><big>)</big><a class="headerlink" href="#src.core.WorldManager.connectClockToPhysic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect clock to physic, to trigger phy update with the clock tick</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.connectGraphToPhysic">
+<tt class="descname">connectGraphToPhysic</tt><big>(</big><big>)</big><a class="headerlink" href="#src.core.WorldManager.connectGraphToPhysic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect graphical &amp; physical agents, to show/update bodies/markers/contacts.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.createAllAgents">
+<tt class="descname">createAllAgents</tt><big>(</big><em>time_step</em>, <em>dt=None</em>, <em>phy_name='physic'</em>, <em>lmd_max=0.01</em>, <em>uc_relaxation_factor=0.1</em>, <em>create_graphic=True</em>, <em>graph_name='graphic'</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.createAllAgents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create all agents: clock, physic &amp; graphic (if required).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>time_step</strong> &#8211; the period of time to call update for clock (Warning: phy is synchronized with clock, the update is called by clock tick, not period)</li>
+<li><strong>dt</strong> &#8211; the integration time for physic at each update call</li>
+<li><strong>phy_name</strong> &#8211; the name of the physical agent</li>
+<li><strong>lmd_max</strong> &#8211; (local minimal distance) the threshold when the lmd is considered (beyond, global distance are considered)</li>
+<li><strong>uc_relaxation_factor</strong> &#8211; TODO!! if I remember well, it is related to the force distribution when two planes are in contact</li>
+<li><strong>create_graphic</strong> &#8211; if False, no physical agent is created; then, &#8216;graph&#8217; &amp; &#8216;graph_scn&#8217; remain None</li>
+<li><strong>graph_name</strong> &#8211; the name of the graphical agent</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.createAndConnectGraphicAgent">
+<tt class="descname">createAndConnectGraphicAgent</tt><big>(</big><em>graph_name</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.createAndConnectGraphicAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create graphical agent &amp; connect it with the physical agent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.createClockAgent">
+<tt class="descname">createClockAgent</tt><big>(</big><em>time_step</em>, <em>clock_name='clock'</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.createClockAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create clock agent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>time_step</strong> &#8211; the tick period (in s)</li>
+<li><strong>clock_name</strong> &#8211; the name of the clock agent</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>It initialize the following property in this world manager:
+* clock</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.createGraphicAgent">
+<tt class="descname">createGraphicAgent</tt><big>(</big><em>graph_name</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.createGraphicAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create graphical agent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph_name</strong> &#8211; the name of the graphical agent</td>
+</tr>
+</tbody>
+</table>
+<p>By default, the transparent ground is not shown. See &#8216;graph_scn.SceneryInterface.showGround&#8217; to show it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.createMarkerWorld">
+<tt class="descname">createMarkerWorld</tt><big>(</big><em>world_name</em>, <em>marker_name_list</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.createMarkerWorld" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a World which contains only markers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>world_name</strong> &#8211; the name given to the new created world</li>
+<li><strong>marker_name_list</strong> &#8211; a list of names representing the new created markers</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">a scene_pb2.World which contains the new markers</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.createOConnectorContactBody">
+<tt class="descname">createOConnectorContactBody</tt><big>(</big><em>connector_name</em>, <em>port_name</em>, <em>body1_name</em>, <em>body2_name</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.createOConnectorContactBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the OConnectorContactBody and define the interaction for the pair (body1, body2).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>connector_name</strong> &#8211; the name of the new output connector</li>
+<li><strong>port_name</strong> &#8211; the name of the OutputPort&lt;SMsg&gt;, which transmits interaction data</li>
+<li><strong>body1_name</strong> &#8211; the name of the first body</li>
+<li><strong>body2_name</strong> &#8211; the name of the second body</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">a ContactInfo instance associated to this interaction (see contact module for more info)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.createPhysicAgent">
+<tt class="descname">createPhysicAgent</tt><big>(</big><em>time_step</em>, <em>dt</em>, <em>phy_name</em>, <em>lmd_max=0.01</em>, <em>uc_relaxation_factor=0.1</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.createPhysicAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create physical agent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>time_step</strong> &#8211; the period which call the physic update</li>
+<li><strong>dt</strong> &#8211; the physic integration time, can be different of the update call period</li>
+<li><strong>phy_name</strong> &#8211; the name of the physical agent</li>
+<li><strong>lmd_max</strong> &#8211; (local minimal distance) the threshold when the lmd is considered (beyond, global distance are considered)</li>
+<li><strong>uc_relaxation_factor</strong> &#8211; TODO!! if I remember well, it is related to the force distribution when two planes are in contact</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>It initialize the following properties in this world manager:
+* phy
+* ms
+* xcd
+* icsync</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.createViewPort">
+<tt class="descname">createViewPort</tt><big>(</big><em>windowName</em>, <em>viewportName</em>, <em>x=0</em>, <em>y=0</em>, <em>rx=1</em>, <em>ry=1</em>, <em>ratio=1</em>, <em>z=None</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.createViewPort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new viewport in a defined window, to create multiple point of view.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>windowName</strong> &#8211; the window name where the new viewport will be created</li>
+<li><strong>viewportName</strong> &#8211; the name of the created viewport</li>
+<li><strong>x</strong> &#8211; the horizontal position inside the window (ratio in [0,1], from left to right)</li>
+<li><strong>y</strong> &#8211; the vertical position inside the window (ratio in [0,1], from top to bottom)</li>
+<li><strong>rx</strong> &#8211; the width ratio [0,1] in the window</li>
+<li><strong>ry</strong> &#8211; the height ratio [0,1] in the window</li>
+<li><strong>ratio</strong> &#8211; the visualization ratio</li>
+<li><strong>z</strong> &#8211; the viewport depth, to manage viewports overlapping</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>the x, y, rx &amp; ry ratios respectively represent the horizontal position, vertical position,
+width and the height of the viewport inside the window.The are expressed in ratio between 0 and 1;
+the left-top corner is located at x=0,y=0 and the right-bottom corner is located at x=1,y=1.</p>
+<p>For instance, if one wants to create a viewport displayed in the half-top, half-right, the parameters
+should be set as follows:
+x=0.5, y=0, rx=0.5, ry=0.5</p>
+<p>The ratio argument can strech the view along x or y axis. TODO: explain more?</p>
+<p>The z argument is the viewport depth. Lower z are in the foreground, bigger z are in the background.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.createWindow">
+<tt class="descname">createWindow</tt><big>(</big><em>windowName</em>, <em>width=800</em>, <em>height=600</em>, <em>x=0</em>, <em>y=0</em>, <em>viewPortName=None</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.createWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new visualization window.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>windowName</strong> &#8211; the name (and title) given to the new window</li>
+<li><strong>width</strong> &#8211; the window width in pixel</li>
+<li><strong>height</strong> &#8211; the window height in pixel</li>
+<li><strong>x</strong> &#8211; the horizontal position of the window (in pixel, from left to right)</li>
+<li><strong>y</strong> &#8211; the vertical position of the window (in pixel, from top to bottom)</li>
+<li><strong>viewPortName</strong> &#8211; the name of the viewport created with the window; if None, it becomes windowName+&#8221;.vp&#8221;</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.disconnectGraphFromPhysic">
+<tt class="descname">disconnectGraphFromPhysic</tt><big>(</big><big>)</big><a class="headerlink" href="#src.core.WorldManager.disconnectGraphFromPhysic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disconnect graphical &amp; physical agents.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.getGraphicAgentFromCorba">
+<tt class="descname">getGraphicAgentFromCorba</tt><big>(</big><em>graph_name</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.getGraphicAgentFromCorba" title="Permalink to this definition">¶</a></dt>
+<dd><p>If corba has been set to True, proxy a remote graphical agent.</p>
+<p>TODO: check if this function work properly, does not know how the data are transfered.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>graph_name</strong> &#8211; the remote graphical agent name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.getPhysicAgentFromCorba">
+<tt class="descname">getPhysicAgentFromCorba</tt><big>(</big><em>phy_name</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.getPhysicAgentFromCorba" title="Permalink to this definition">¶</a></dt>
+<dd><p>If corba has been set to True, proxy a remote physical agent.</p>
+<p>It also recovers ms (main scene) and xcd (geometrical scene).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>phy_name</strong> &#8211; the remote physical agent name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.removeAllInteractions">
+<tt class="descname">removeAllInteractions</tt><big>(</big><big>)</big><a class="headerlink" href="#src.core.WorldManager.removeAllInteractions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the visualization of all interactions already registered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.removeInteraction">
+<tt class="descname">removeInteraction</tt><big>(</big><em>pairs_of_contact</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.removeInteraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the visualization of interactions between pairs of bodies.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pairs_of_contact</strong> &#8211; a list of bodies name pairs.</td>
+</tr>
+</tbody>
+</table>
+<p>For instance, if we want to unsee the interactions between &#8220;b1&#8221;/&#8221;b2&#8221; &amp;
+between &#8220;b1&#8221;/&#8221;b3&#8221;, the argument will be on the form:
+removeInteraction( [(&#8220;b1&#8221;, &#8220;b2&#8221;), (&#8220;b1&#8221;, &#8220;b3&#8221;)] )</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.removeMarkerFromSimulation">
+<tt class="descname">removeMarkerFromSimulation</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.removeMarkerFromSimulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Directly remove a marker from the graphical scene.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; the name of the marker one wants to delete</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.removeMarkers">
+<tt class="descname">removeMarkers</tt><big>(</big><em>world</em>, <em>bodies_to_hide=None</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.removeMarkers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the visual frame attached to each body of bodies_to_display list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>world</strong> &#8211; a scene_pb2.World where the marker will be removed</li>
+<li><strong>bodies_to_display</strong> &#8211; a list of body name one wants to hide</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>If the list is empty, visual frame for every body in world is removed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.removeWorld">
+<tt class="descname">removeWorld</tt><big>(</big><em>old_world</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.removeWorld" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a World from all the physical &amp; graphical components.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>old_world</strong> &#8211; a scene_pb2.World which will be deleted</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.removeWorldFromGraphic">
+<tt class="descname">removeWorldFromGraphic</tt><big>(</big><em>old_world</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.removeWorldFromGraphic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a World from all the graphical components.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>old_world</strong> &#8211; a scene_pb2.World which will be deleted</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.removeWorldFromPhysic">
+<tt class="descname">removeWorldFromPhysic</tt><big>(</big><em>old_world</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.removeWorldFromPhysic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a World from all the physical components.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>old_world</strong> &#8211; a scene_pb2.World which will be deleted</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.resizeViewport">
+<tt class="descname">resizeViewport</tt><big>(</big><em>viewportName</em>, <em>x=0</em>, <em>y=0</em>, <em>rx=1</em>, <em>ry=1</em>, <em>ratio=1</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.resizeViewport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resize a previously created viewport.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>viewportName</strong> &#8211; the name of the viewport one wants to modify</li>
+<li><strong>x</strong> &#8211; the horizontal position inside the window (ratio in [0,1], from left to right)</li>
+<li><strong>y</strong> &#8211; the vertical position inside the window (ratio in [0,1], from top to bottom)</li>
+<li><strong>rx</strong> &#8211; the width ratio [0,1] in the window</li>
+<li><strong>ry</strong> &#8211; the height ratio [0,1] in the window</li>
+<li><strong>ratio</strong> &#8211; the visualization ratio</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>For more info on these arguments, see method createViewPort.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.resizeWindow">
+<tt class="descname">resizeWindow</tt><big>(</big><em>windowName</em>, <em>width=800</em>, <em>height=600</em>, <em>x=0</em>, <em>y=0</em><big>)</big><a class="headerlink" href="#src.core.WorldManager.resizeWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resize a previously created window.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>windowName</strong> &#8211; the name of the window one wants to modify</li>
+<li><strong>width</strong> &#8211; the window width in pixel</li>
+<li><strong>height</strong> &#8211; the window height in pixel</li>
+<li><strong>x</strong> &#8211; the horizontal position of the window (in pixel, from left to right)</li>
+<li><strong>y</strong> &#8211; the vertical position of the window (in pixel, from top to bottom)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.startAgents">
+<tt class="descname">startAgents</tt><big>(</big><big>)</big><a class="headerlink" href="#src.core.WorldManager.startAgents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start clock &amp; physical agents.</p>
+<p>Note: the graphical agent, if created, is started when created.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.startSimulation">
+<tt class="descname">startSimulation</tt><big>(</big><big>)</big><a class="headerlink" href="#src.core.WorldManager.startSimulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start simulation when agent is already started, but the simulation has been stop with stopSimulation method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.stopAgents">
+<tt class="descname">stopAgents</tt><big>(</big><big>)</big><a class="headerlink" href="#src.core.WorldManager.stopAgents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop clock &amp; physical agents.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.core.WorldManager.stopSimulation">
+<tt class="descname">stopSimulation</tt><big>(</big><big>)</big><a class="headerlink" href="#src.core.WorldManager.stopSimulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop simulation, whithout stopping physic agent.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="src.core.verbose_print">
+<tt class="descname">verbose_print</tt><big>(</big><em>msg</em><big>)</big><a class="headerlink" href="#src.core.verbose_print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">WorldManager v0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Sovan Hak.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>
