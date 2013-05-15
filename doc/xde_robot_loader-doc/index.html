@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>xde_robot_loader &mdash; RobotLoader v0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="RobotLoader v0 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">RobotLoader v0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="xde-robot-loader">
+<h1>xde_robot_loader<a class="headerlink" href="#xde-robot-loader" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-src.core"></span><dl class="function">
+<dt id="src.core.Displacement2UrdfPose">
+<tt class="descname">Displacement2UrdfPose</tt><big>(</big><em>H</em><big>)</big><a class="headerlink" href="#src.core.Displacement2UrdfPose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a displacement into a pose from urdf file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>urdfPose</strong> &#8211; a lgsm.Displacement</td>
+</tr>
+<tr class="field"><th class="field-name">Return type:</th><td class="field-body">a urdf.Pose</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.core.Quaternion2RollPitchYaw">
+<tt class="descname">Quaternion2RollPitchYaw</tt><big>(</big><em>Q</em><big>)</big><a class="headerlink" href="#src.core.Quaternion2RollPitchYaw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Give the (roll,pitch,yaw) rotation coresponding to the Quaternion</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>Q</strong> &#8211; the lgsm.Quaternion one wants to convert</td>
+</tr>
+<tr class="field"><th class="field-name">Return type:</th><td class="field-body">a 3-list corresponding to the [roll, pitch, yaw] rotation</td>
+</tr>
+<tr class="field"><th class="field-name">Warning :</th><td class="field-body">it seems that some conversion problems occur when pitch = +|- pi/2</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.core.RollPitchYaw2Quaternion">
+<tt class="descname">RollPitchYaw2Quaternion</tt><big>(</big><em>roll</em>, <em>pitch</em>, <em>yaw</em><big>)</big><a class="headerlink" href="#src.core.RollPitchYaw2Quaternion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Give the Quaternion coresponding to the (roll,pitch,yaw) rotation</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>roll</strong> &#8211; a double which represents the roll angle</li>
+<li><strong>pitch</strong> &#8211; a double which represents the pitch angle</li>
+<li><strong>yaw</strong> &#8211; a double which represents the yaw angle</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">return a lgsm.Quaternion representing this rotation</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.core.UrdfPose2Displacement">
+<tt class="descname">UrdfPose2Displacement</tt><big>(</big><em>urdfPose</em><big>)</big><a class="headerlink" href="#src.core.UrdfPose2Displacement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a pose from urdf file into a displacement</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>urdfPose</strong> &#8211; a urdf.Pose</td>
+</tr>
+<tr class="field"><th class="field-name">Return type:</th><td class="field-body">a lgsm.Displacement</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.core.createBinding">
+<tt class="descname">createBinding</tt><big>(</big><em>world</em>, <em>phy_name</em>, <em>graph_name</em>, <em>comp_name</em><big>)</big><a class="headerlink" href="#src.core.createBinding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create binding between physical, graphical &amp; collision scenes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>world</strong> &#8211; a scene_pb2.World where the binding is set</li>
+<li><strong>phy_name</strong> &#8211; the name of the physical node</li>
+<li><strong>graph_name</strong> &#8211; the name of the graphical node</li>
+<li><strong>comp_name</strong> &#8211; the name of the composite (collision) name</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Warning :</th><td class="field-body"><p class="first last">this method changes the name of the graph node into phy_name</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.core.createComposite">
+<tt class="descname">createComposite</tt><big>(</big><em>world</em>, <em>graph_name</em>, <em>composite_name</em>, <em>offset</em><big>)</big><a class="headerlink" href="#src.core.createComposite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a composite node copied from a graphical node</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>world</strong> &#8211; a scene_pb2.World where the graph node is, and where the composite will be created</li>
+<li><strong>graph_name</strong> &#8211; the name of the graphical node</li>
+<li><strong>composite_name</strong> &#8211; the name of the new composite node</li>
+<li><strong>offset</strong> &#8211; the thickness dimension which covers the composite mesh</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.core.createWorldFromDae">
+<tt class="descname">createWorldFromDae</tt><big>(</big><em>daeFileName</em>, <em>objectName</em>, <em>H_init=None</em>, <em>is_fixed_base=True</em>, <em>can_collide=True</em>, <em>collFileName=None</em>, <em>composite_offset=0.001</em>, <em>scale=1.0</em>, <em>mass=1.0</em>, <em>moments_of_inertia=None</em>, <em>H_inertia_segment=None</em>, <em>material_name='material.metal'</em><big>)</big><a class="headerlink" href="#src.core.createWorldFromDae" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a world from a simple object described in a dae file.</p>
+<p>It does not create a robot (a kinematic tree-structure) but a simple body through
+a physical node, a graphical node and a composite (collision) node.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>daeFileName</strong> &#8211; the dae file path to convert</li>
+<li><strong>objectName</strong> &#8211; the name of the physical node</li>
+<li><strong>H_init</strong> &#8211; the initial pose (lgsm.Displacement) of the object in scene; by  default lgsm.Displacement(0,0,0)</li>
+<li><strong>can_collide</strong> &#8211; True if it collide in the physical scene, or False if it is just a decoration</li>
+<li><strong>collFileName</strong> &#8211; the dae file path if collision mesh is in another dae, else it is the daeFileName</li>
+<li><strong>composite_offset</strong> &#8211; the thickness dimension which covers the composite mesh</li>
+<li><strong>scale</strong> &#8211; the scale of the mesh, can be a float or a 3-list</li>
+<li><strong>mass</strong> &#8211; the mass of the physical object</li>
+<li><strong>moments_of_inertia</strong> &#8211; the moments of inertia of the object</li>
+<li><strong>H_inertia_segment</strong> &#8211; the lgsm.Displacement from the object frame to the inertial principal frame</li>
+<li><strong>material_name</strong> &#8211; the material name, used in the definition of frictional interaction</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">a scene_pb2.World with one physical/graphical/composite node</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.core.createWorldFromUrdfFile">
+<tt class="descname">createWorldFromUrdfFile</tt><big>(</big><em>urdfFileName</em>, <em>robotName</em>, <em>H_init=None</em>, <em>is_fixed_base=True</em>, <em>minimal_damping=0.001</em>, <em>composite_offset=0.001</em><big>)</big><a class="headerlink" href="#src.core.createWorldFromUrdfFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a world from a kinematic tree-structure described in an urdf file.</p>
+<p>It creates a kinematic tree-structure by parsing an urdf file, which describes
+the whole data about physic, kinematic, graphic and collision.
+For more information, see: <cite>http://www.ros.org/wiki/urdf/XML/model</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>urdfFileName</strong> &#8211; the urdf file path which describes the robot</li>
+<li><strong>robotName</strong> &#8211; the robot name given in this world</li>
+<li><strong>H_init</strong> &#8211; the initial pose (lgsm.Displacement) of the object in scene; by  default lgsm.Displacement(0,0,0)</li>
+<li><strong>is_fixed_base</strong> &#8211; True if the robot is rigidly linked to the ground, False if it has a free-flying root</li>
+<li><strong>minimal_damping</strong> &#8211; the minimal articular damping. Should NOT be null, because it seems to block the simulation</li>
+<li><strong>composite_offset</strong> &#8211; the thickness dimension which covers the robto composite meshes</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">a scene_pb2.World that contains the robot</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In this created world, the robot is named &#8216;robotName&#8217;, and robot components are prefixed with &#8216;robotName+.&#8217;
+For instance, if segments are &#8216;seg01&#8217;, &#8216;seg02&#8217;, ... in urdf file, and we create a robot &#8216;johnny5&#8217;
+they can be found in the GVM scene with the names: &#8216;johnny5.seg01&#8217;, &#8216;johnny5.seg02&#8217;, etc...</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.core.getParentNode">
+<tt class="descname">getParentNode</tt><big>(</big><em>root_node</em>, <em>node_name</em><big>)</big><a class="headerlink" href="#src.core.getParentNode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="src.core.get_simple_shapes_dae">
+<tt class="descname">get_simple_shapes_dae</tt><big>(</big><big>)</big><a class="headerlink" href="#src.core.get_simple_shapes_dae" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the dae file path of the simple shapes, box, sphere, cylinder</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.core.parse_urdf">
+<tt class="descname">parse_urdf</tt><big>(</big><em>urdfFileName</em>, <em>robotName</em>, <em>minimal_damping</em><big>)</big><a class="headerlink" href="#src.core.parse_urdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a urdf file to obtain usefull information for XDE.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>urdfFileName</strong> &#8211; the urdf file path</li>
+<li><strong>robotName</strong> &#8211; the robot name, mainly to rename urdf components with the convention &#8216;robotName.compName&#8217;</li>
+<li><strong>minimal_damping</strong> &#8211; if not given in urdf file, minimal damping. Should NOT be zero to avoid any blocking simulation</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.core.principalframe">
+<tt class="descname">principalframe</tt><big>(</big><em>M</em><big>)</big><a class="headerlink" href="#src.core.principalframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the principal frame of inertia of a mass matrix.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>M</strong> &#8211; a (6x6) mass matrix expressed in any frame (say <cite>a</cite>)</td>
+</tr>
+<tr class="field"><th class="field-name">Return type:</th><td class="field-body">a lgsm.Displacement representing <cite>H_{am}</cite> from <cite>a</cite> to the principal inertia frame <cite>m</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">RobotLoader v0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Sovan Hak.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>
