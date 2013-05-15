@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>xde_spacemouse &mdash; SpaceMouse v0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="SpaceMouse v0 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">SpaceMouse v0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="xde-spacemouse">
+<h1>xde_spacemouse<a class="headerlink" href="#xde-spacemouse" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-src.spacemouse"></span><p>This module abstract the instantiation and configuration of the spacemouse.</p>
+<dl class="class">
+<dt id="src.spacemouse.SpaceMouse">
+<em class="property">class </em><tt class="descname">SpaceMouse</tt><big>(</big><em>name</em>, <em>time_step</em>, <em>phy</em>, <em>graph</em>, <em>cursor_name</em>, <em>pdc_enabled</em>, <em>body_name</em>, <em>PR</em>, <em>PT</em>, <em>DR</em>, <em>DT</em><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">dsimi.rtt.Task</span></tt></p>
+<p>Orocos task that gathers the components to use the spacemouse: load driver, open device and configure.
+Two control mode are available: Normal and PDC.
+In Normal mode, the spacemouse control a cursor.
+In PDC mode, the user attach a body to the cursor with a PD coupling so that
+the body is attracted to the cursor.
+In both case the cursor is controlled in the camera frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; name of the Orocos task that will be associated to this task</li>
+<li><strong>time_step</strong> &#8211; period of the Orocos task</li>
+<li><strong>phy</strong> &#8211; the main physic agent</li>
+<li><strong>graph</strong> &#8211; the main graphic agent</li>
+<li><strong>cursor_name</strong> &#8211; name of the body that will represent the cursor</li>
+<li><strong>pdc_enabled</strong> &#8211; set to True to enable PDC mode, False to enable Normal mode</li>
+<li><strong>body_name</strong> &#8211; name of the body to be attached to the cursor in PDC mode</li>
+<li><strong>PR</strong> &#8211; P parameter for rotation of the PD Coupling (PDC mode)</li>
+<li><strong>PT</strong> &#8211; P parameter for translation of the PD Coupling (PDC mode)</li>
+<li><strong>DR</strong> &#8211; D parameter for rotation of the PD Coupling (PDC mode)</li>
+<li><strong>DT</strong> &#8211; D parameter for translation of the PD Coupling (PDC mode)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.addCreateInputPort">
+<tt class="descname">addCreateInputPort</tt><big>(</big><em>name</em>, <em>type</em>, <em>event=False</em>, <em>bufferSize=None</em><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.addCreateInputPort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.addCreateOutputPort">
+<tt class="descname">addCreateOutputPort</tt><big>(</big><em>name</em>, <em>type</em><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.addCreateOutputPort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.addPort">
+<tt class="descname">addPort</tt><big>(</big><em>port</em><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.addPort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.cleanPDC">
+<tt class="descname">cleanPDC</tt><big>(</big><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.cleanPDC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove properly the PDC (for example when changing body)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.createPDC">
+<tt class="descname">createPDC</tt><big>(</big><em>body_name</em><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.createPDC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the PDC, attach the body &#8216;body_name&#8217; to the origin of the virtual spring
+and enable PDC Control mode</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>body_name</strong> &#8211; name of the body to be attached to the cursor in PDC mode</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.createPortAndConnect">
+<tt class="descname">createPortAndConnect</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.createPortAndConnect" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.getPort">
+<tt class="descname">getPort</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.getPort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.registerHooks">
+<tt class="descname">registerHooks</tt><big>(</big><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.registerHooks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.registerOperations">
+<tt class="descname">registerOperations</tt><big>(</big><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.registerOperations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.setBody">
+<tt class="descname">setBody</tt><big>(</big><em>body_name</em><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.setBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the body named to be attached to the PDC</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>body_name</strong> &#8211; name of the body to be attached to the cursor in PDC mode</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.setHooks">
+<tt class="descname">setHooks</tt><big>(</big><em>hooks</em><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.setHooks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.setOperation">
+<tt class="descname">setOperation</tt><big>(</big><em>service</em>, <em>wrapper</em>, <em>name</em>, <em>rtype</em>, <em>atype</em>, <em>doc=None</em>, <em>arg=None</em><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.setOperation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.setPDCGain">
+<tt class="descname">setPDCGain</tt><big>(</big><em>PR</em>, <em>PT</em>, <em>DR</em>, <em>DT</em><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.setPDCGain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the gain for the PDCoupling</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>PR</strong> &#8211; P parameter for rotation of the PD Coupling (PDC mode)</li>
+<li><strong>PT</strong> &#8211; P parameter for translation of the PD Coupling (PDC mode)</li>
+<li><strong>DR</strong> &#8211; D parameter for rotation of the PD Coupling (PDC mode)</li>
+<li><strong>DT</strong> &#8211; D parameter for translation of the PD Coupling (PDC mode)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.startHook">
+<tt class="descname">startHook</tt><big>(</big><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.startHook" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.stopHook">
+<tt class="descname">stopHook</tt><big>(</big><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.stopHook" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.updateBinding">
+<tt class="descname">updateBinding</tt><big>(</big><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.updateBinding" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="src.spacemouse.SpaceMouse.updateHook">
+<tt class="descname">updateHook</tt><big>(</big><big>)</big><a class="headerlink" href="#src.spacemouse.SpaceMouse.updateHook" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="src.spacemouse.createTask">
+<tt class="descname">createTask</tt><big>(</big><em>name</em>, <em>time_step</em>, <em>phy</em>, <em>graph</em>, <em>cursor_name</em>, <em>pdc_enabled=False</em>, <em>body_name=None</em>, <em>PR=30</em>, <em>PT=30</em>, <em>DR=30</em>, <em>DT=30</em><big>)</big><a class="headerlink" href="#src.spacemouse.createTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate the Orocos task and set a proxy</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; name of the Orocos task that will be associated to this task</li>
+<li><strong>time_step</strong> &#8211; period of the Orocos task</li>
+<li><strong>phy</strong> &#8211; the main physic agent</li>
+<li><strong>graph</strong> &#8211; the main graphic agent</li>
+<li><strong>cursor_name</strong> &#8211; name of the body that will represent the cursor</li>
+<li><strong>pdc_enabled</strong> &#8211; set to True to enable PDC mode, False to enable Normal mode</li>
+<li><strong>body_name</strong> &#8211; name of the body to be attached to the cursor in PDC mode</li>
+<li><strong>PR</strong> &#8211; P parameter for rotation of the PD Coupling (PDC mode)</li>
+<li><strong>PT</strong> &#8211; P parameter for translation of the PD Coupling (PDC mode)</li>
+<li><strong>DR</strong> &#8211; D parameter for rotation of the PD Coupling (PDC mode)</li>
+<li><strong>DT</strong> &#8211; D parameter for translation of the PD Coupling (PDC mode)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.spacemouse.setProxy">
+<tt class="descname">setProxy</tt><big>(</big><em>_sm</em><big>)</big><a class="headerlink" href="#src.spacemouse.setProxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the proxy</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">SpaceMouse v0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Sovan Hak.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>
