@@ -1,8 +1,8 @@
 
 
 apt-get install -y -q \
-                log4cpp-dev ipython-qtconsole \ 
-                python-pyside libogre-dev libois-dev ogre-samples \ 
+                log4cpp-dev ipython-qtconsole \
+                python-pyside libogre-dev libois-dev ogre-samples \
                 ogre-samples-data ogre-tools libtbb-dev
 
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6E50A1A3
