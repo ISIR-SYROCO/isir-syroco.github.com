@@ -1,7 +1,6 @@
 
 
-apt-get install -y -q \
-                log4cpp-dev ipython-qtconsole \
+apt-get install -y -q log4cpp-dev ipython-qtconsole \
                 python-pyside libogre-dev libois-dev ogre-samples \
                 ogre-samples-data ogre-tools libtbb-dev
 
